@@ -8,6 +8,13 @@
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            {{-- Status Message --}}
+            @if (session('status'))
+                <x-alert color="{{ session('status') }}">
+                    {{ session('message') }}
+                </x-alert>
+            @endif
+
             <form
                 class="space-y-6"
                 action="/login"
@@ -26,13 +33,8 @@
                             value="{{ old('email') }}"
                         />
                         @error('email')
-                            <span
-                                class="ml-1 mt-1 flex items-center text-xs font-medium tracking-wide text-red-500"
-                            >
-                                {{ $message }}
-                            </span>
+                            <x-forms.error>{{ $message }}</x-forms.error>
                         @enderror
-
                     </div>
                 </div>
 
@@ -55,11 +57,7 @@
                             value="{{ old('password') }}"
                         />
                         @error('password')
-                            <span
-                                class="ml-1 mt-1 flex items-center text-xs font-medium tracking-wide text-red-500"
-                            >
-                                {{ $message }}
-                            </span>
+                            <x-forms.error>{{ $message }}</x-forms.error>
                         @enderror
                     </div>
                 </div>

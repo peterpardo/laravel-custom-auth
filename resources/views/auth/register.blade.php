@@ -10,9 +10,61 @@
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form
                 class="space-y-6"
-                action="#"
+                action="/register"
                 method="POST"
             >
+                @csrf
+                <div>
+                    <x-forms.label for="first_name">
+                        First Name
+                    </x-forms.label>
+                    <div class="mt-2">
+                        <x-forms.input
+                            id="first_name"
+                            name="first_name"
+                            type="text"
+                            value="{{ old('first_name') }}"
+                            required
+                        />
+                        @error('first_name')
+                            <x-forms.error>{{ $message }}</x-forms.error>
+                        @enderror
+                    </div>
+                </div>
+                <div>
+                    <x-forms.label for="middle_name">
+                        Middle Name <span class="text-slate-400">(Optional)</span>
+                    </x-forms.label>
+                    <div class="mt-2">
+                        <x-forms.input
+                            id="middle_name"
+                            name="middle_name"
+                            type="text"
+                            value="{{ old('middle_name') }}"
+                        />
+                        @error('middle_name')
+                            <x-forms.error>{{ $message }}</x-forms.error>
+                        @enderror
+                    </div>
+                </div>
+                <div>
+                    <x-forms.label for="last_name">
+                        Last Name
+                    </x-forms.label>
+                    <div class="mt-2">
+                        <x-forms.input
+                            id="last_name"
+                            name="last_name"
+                            type="text"
+                            value="{{ old('last_name') }}"
+                            required
+                        />
+                        @error('last_name')
+                            <x-forms.error>{{ $message }}</x-forms.error>
+                        @enderror
+                    </div>
+                </div>
+
                 <div>
                     <x-forms.label for="email">
                         Email Address
@@ -21,8 +73,13 @@
                         <x-forms.input
                             id="email"
                             name="email"
-                            type="text"
+                            type="email"
+                            value="{{ old('email') }}"
+                            required
                         />
+                        @error('email')
+                            <x-forms.error>{{ $message }}</x-forms.error>
+                        @enderror
                     </div>
                 </div>
 
@@ -36,18 +93,21 @@
                             name="password"
                             type="password"
                         />
+                        @error('password')
+                            <x-forms.error>{{ $message }}</x-forms.error>
+                        @enderror
                     </div>
                 </div>
 
                 <div>
-                    <x-forms.label for="confirm_password">
+                    <x-forms.label for="password_confirmation">
                         Confirm Password
                     </x-forms.label>
                     <div class="mt-2">
                         <x-forms.input
-                            id="confirm_password"
-                            name="confirm_password"
-                            type="confirm_password"
+                            id="password_confirmation"
+                            name="password_confirmation"
+                            type="password"
                         />
                     </div>
                 </div>

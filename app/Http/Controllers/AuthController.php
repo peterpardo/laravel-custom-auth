@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function loginView()
-    {
-        return view('auth.login');
-    }
 
     public function authenticate(Request $request)
     {
@@ -30,8 +27,20 @@ class AuthController extends Controller
         ])->onlyInput('email');
     }
 
-    public function registerView()
+    public function registerAccount(Request $request)
     {
-        return view('auth.register');
+        $validated = $request->validate([
+            'first_name' => ['required'],
+            'middle_name' => ['nullable'],
+            'last_name' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required',  'min:8', 'confirmed']
+        ]);
+
+        User::create($validated);
+
+        return redirect('/login')
+            ->with('status', 'success')
+            ->with('message', 'Account successfully registered!');
     }
 }
