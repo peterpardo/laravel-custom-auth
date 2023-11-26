@@ -32,11 +32,9 @@
                             Password
                         </x-forms.label>
                         <div class="text-sm">
-                            <a
-                                class="font-semibold text-indigo-600 hover:text-indigo-500"
-                                href="#"
-                            >Forgot
-                                password?</a>
+                            <x-link href="#">
+                                Forgot password?
+                            </x-link>
                         </div>
                     </div>
                     <div class="mt-2">
@@ -60,12 +58,9 @@
 
             <p class="mt-10 text-center text-sm text-gray-500">
                 Not a member?
-                <a
-                    class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-                    href="/register"
-                >
+                <x-link href="/register">
                     Sign up here
-                </a>
+                </x-link>
             </p>
         </div>
     </div>
