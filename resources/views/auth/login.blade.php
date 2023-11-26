@@ -10,9 +10,10 @@
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form
                 class="space-y-6"
-                action="#"
+                action="/login"
                 method="POST"
             >
+                @csrf
                 <div>
                     <x-forms.label for="email">
                         Email Address
@@ -21,8 +22,17 @@
                         <x-forms.input
                             id="email"
                             name="email"
-                            type="text"
+                            type="email"
+                            value="{{ old('email') }}"
                         />
+                        @error('email')
+                            <span
+                                class="ml-1 mt-1 flex items-center text-xs font-medium tracking-wide text-red-500"
+                            >
+                                {{ $message }}
+                            </span>
+                        @enderror
+
                     </div>
                 </div>
 
@@ -42,7 +52,15 @@
                             id="password"
                             name="password"
                             type="password"
+                            value="{{ old('password') }}"
                         />
+                        @error('password')
+                            <span
+                                class="ml-1 mt-1 flex items-center text-xs font-medium tracking-wide text-red-500"
+                            >
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                 </div>
 

@@ -20,5 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'register']);
+Route::get('/login', [AuthController::class, 'loginView']);
+Route::post('/login', [AuthController::class, 'authenticate']);
+Route::get('/register', [AuthController::class, 'registerView']);
