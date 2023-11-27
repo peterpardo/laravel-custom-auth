@@ -12,6 +12,12 @@
                 class="space-y-6"
                 action="/register"
                 method="POST"
+                x-data="{
+                    show: false,
+                    get type() {
+                        return this.show ? 'text' : 'password'
+                    }
+                }"
             >
                 @csrf
                 <div>
@@ -33,7 +39,8 @@
                 </div>
                 <div>
                     <x-forms.label for="middle_name">
-                        Middle Name <span class="text-slate-400">(Optional)</span>
+                        Middle Name <span
+                            class="text-slate-400">(Optional)</span>
                     </x-forms.label>
                     <div class="mt-2">
                         <x-forms.input
@@ -47,6 +54,7 @@
                         @enderror
                     </div>
                 </div>
+
                 <div>
                     <x-forms.label for="last_name">
                         Last Name
@@ -91,7 +99,7 @@
                         <x-forms.input
                             id="password"
                             name="password"
-                            type="password"
+                            x-bind:type="type"
                         />
                         @error('password')
                             <x-forms.error>{{ $message }}</x-forms.error>
@@ -107,8 +115,23 @@
                         <x-forms.input
                             id="password_confirmation"
                             name="password_confirmation"
-                            type="password"
+                            x-bind:type="type"
                         />
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex h-5 items-center">
+                        <input
+                            class="focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 h-4 w-4 rounded border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
+                            id="terms"
+                            type="checkbox"
+                            aria-describedby="terms"
+                            @click="show = !show"
+                        >
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="terms">Show Password</label>
                     </div>
                 </div>
 
